@@ -1,0 +1,851 @@
+@import "tailwindcss";
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #09090b;
+  --surface: #111114;
+  --surface-2: #18181c;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f4f4f5;
+  --muted: #a1a1aa;
+  --purple: #8b5cf6;
+  --purple-dark: #6d28d9;
+  --pink: #ec4899;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(124, 58, 237, 0.13), transparent 28%),
+    radial-gradient(circle at 85% 15%, rgba(236, 72, 153, 0.08), transparent 25%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* =========================================================
+   AUTH PAGES
+========================================================= */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 16px;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.22), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.16), transparent 30%),
+    #08080a;
+}
+
+.auth-page::before,
+.auth-page::after {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.auth-page::before {
+  background: rgba(124, 58, 237, 0.2);
+  top: -120px;
+  left: -100px;
+}
+
+.auth-page::after {
+  background: rgba(236, 72, 153, 0.12);
+  bottom: -120px;
+  right: -100px;
+}
+
+.auth-box {
+  width: 410px;
+  max-width: 100%;
+  padding: 38px;
+  position: relative;
+  z-index: 1;
+
+  background: rgba(18, 18, 22, 0.86);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  backdrop-filter: blur(18px);
+}
+
+.auth-box h1 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  margin-bottom: 7px;
+
+  background: linear-gradient(135deg, #c4b5fd, #a78bfa, #f0abfc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.auth-box h2 {
+  text-align: center;
+  color: #e4e4e7;
+  font-size: 20px;
+  margin-bottom: 28px;
+}
+
+.auth-box label {
+  display: block;
+  margin: 16px 0 7px;
+  color: #d4d4d8;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.auth-box input,
+.create-post textarea,
+.search-box input,
+.comments input {
+  width: 100%;
+  padding: 13px 15px;
+
+  color: var(--text);
+  background: #0f0f12;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+
+  outline: none;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+.auth-box input::placeholder,
+.search-box input::placeholder,
+.comments input::placeholder,
+.create-post textarea::placeholder {
+  color: #71717a;
+}
+
+.auth-box input:focus,
+.create-post textarea:focus,
+.search-box input:focus,
+.comments input:focus {
+  border-color: rgba(139, 92, 246, 0.7);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+}
+
+.primary-btn {
+  border: 0;
+  background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+  color: white;
+  padding: 12px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.2s ease;
+
+  box-shadow: 0 8px 22px rgba(124, 58, 237, 0.22);
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(124, 58, 237, 0.32);
+}
+
+.primary-btn:active {
+  transform: translateY(0);
+}
+
+.auth-box .primary-btn {
+  width: 100%;
+  margin-top: 22px;
+}
+
+.auth-box p {
+  text-align: center;
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.auth-box a {
+  color: #a78bfa;
+  font-weight: 700;
+}
+
+.auth-box a:hover {
+  color: #c4b5fd;
+}
+
+.error {
+  color: #fb7185;
+  background: rgba(244, 63, 94, 0.08);
+  border: 1px solid rgba(244, 63, 94, 0.18);
+  padding: 9px 12px;
+  border-radius: 9px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  background: rgba(9, 9, 11, 0.82);
+  border-bottom: 1px solid var(--border);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 5%;
+  backdrop-filter: blur(18px);
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 850;
+  letter-spacing: -1px;
+
+  background: linear-gradient(135deg, #c4b5fd, #a78bfa, #f0abfc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.nav-links a,
+.nav-links button {
+  border: 1px solid transparent;
+  background: transparent;
+  color: #a1a1aa;
+  padding: 9px 13px;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-links button {
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+  color: white;
+  font-weight: 600;
+}
+
+.nav-links button:hover {
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MAIN HOME
+========================================================= */
+
+.page {
+  width: 100%;
+  max-width: 1400px;
+  margin: 28px auto;
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr) 245px;
+  gap: 24px;
+  padding: 0 20px;
+}
+
+.sidebar,
+.right-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profile-mini,
+.side-menu,
+.side-card {
+  background: rgba(18, 18, 22, 0.88);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+}
+
+.profile-mini {
+  text-align: center;
+}
+
+.big-avatar,
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  border-radius: 50%;
+
+  background:
+    linear-gradient(#17171b, #17171b) padding-box,
+    linear-gradient(135deg, #8b5cf6, #ec4899) border-box;
+
+  border: 3px solid transparent;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #c4b5fd;
+  font-size: 29px;
+  font-weight: 800;
+}
+
+.profile-mini h3 {
+  margin-top: 13px;
+  color: #fafafa;
+}
+
+.profile-mini p {
+  color: #71717a;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.profile-mini a {
+  display: inline-block;
+  margin-top: 13px;
+  color: #a78bfa;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.side-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.side-menu button {
+  border: 0;
+  background: transparent;
+  color: #a1a1aa;
+  text-align: left;
+  font-size: 14px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.side-menu button:hover {
+  color: white;
+  background: rgba(139, 92, 246, 0.1);
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-box {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.search-box input {
+  background: rgba(18, 18, 22, 0.9);
+  padding-left: 16px;
+}
+
+.search-results {
+  position: absolute;
+  top: 54px;
+  width: 100%;
+
+  background: #151519;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.search-results a {
+  display: flex;
+  flex-direction: column;
+  padding: 13px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: 0.2s ease;
+}
+
+.search-results a:hover {
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.search-results a:last-child {
+  border-bottom: 0;
+}
+
+
+/* =========================================================
+   CREATE POST
+========================================================= */
+
+.create-post {
+  background: rgba(18, 18, 22, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  padding: 22px;
+  margin-bottom: 22px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+}
+
+.create-post h3 {
+  color: #f4f4f5;
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+.create-post textarea {
+  min-height: 100px;
+  resize: vertical;
+  margin-bottom: 12px;
+  background: #0d0d10;
+}
+
+
+/* =========================================================
+   UPLOAD
+========================================================= */
+
+.post-upload {
+  margin: 13px 0;
+}
+
+.post-upload label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 9px 14px;
+  border-radius: 10px;
+
+  background: rgba(139, 92, 246, 0.09);
+  border: 1px solid rgba(139, 92, 246, 0.18);
+
+  color: #c4b5fd;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.post-upload label:hover {
+  background: rgba(139, 92, 246, 0.16);
+  border-color: rgba(139, 92, 246, 0.35);
+}
+
+.post-upload input {
+  display: none;
+}
+
+.post-upload p {
+  margin-top: 8px;
+  color: #71717a;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   POST CARD
+========================================================= */
+
+.post-card {
+  background: rgba(18, 18, 22, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  padding: 20px;
+  margin: 15px 0;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.16);
+  transition: 0.25s ease;
+}
+
+.post-card:hover {
+  border-color: rgba(139, 92, 246, 0.2);
+  transform: translateY(-1px);
+}
+
+.post-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(#17171b, #17171b) padding-box,
+    linear-gradient(135deg, #8b5cf6, #ec4899) border-box;
+
+  border: 2px solid transparent;
+
+  color: #c4b5fd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+}
+
+.post-header strong {
+  color: #f4f4f5;
+}
+
+.post-header p {
+  color: #71717a;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.post-content {
+  margin: 18px 0;
+  color: #d4d4d8;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.post-image {
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+.post-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+  padding-top: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.post-actions button {
+  border: 0;
+  background: transparent;
+  color: #a1a1aa;
+
+  padding: 9px 13px;
+  border-radius: 10px;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.post-actions button:hover {
+  color: #e4e4e7;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+
+/* =========================================================
+   COMMENTS
+========================================================= */
+
+.comments {
+  margin-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 15px;
+}
+
+.comment {
+  padding: 9px 0;
+  display: flex;
+  gap: 10px;
+  color: #d4d4d8;
+  font-size: 14px;
+}
+
+.comments form {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.comments input {
+  flex: 1;
+  background: #0d0d10;
+}
+
+.comments button {
+  border: 0;
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+  color: white;
+  border-radius: 10px;
+  padding: 0 16px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   SIDE CARDS
+========================================================= */
+
+.side-card h3 {
+  color: #f4f4f5;
+  font-size: 15px;
+  margin-bottom: 13px;
+}
+
+.side-card p {
+  color: #85858e;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-page {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.profile-card {
+  background: rgba(18, 18, 22, 0.92);
+  border: 1px solid var(--border);
+
+  padding: 35px;
+  text-align: center;
+  border-radius: 22px;
+
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+}
+
+.profile-avatar {
+  margin-bottom: 15px;
+}
+
+.profile-card h2 {
+  color: #fafafa;
+  margin-top: 7px;
+}
+
+.bio {
+  margin: 15px 0;
+  color: #8f8f98;
+  line-height: 1.6;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin: 25px 0;
+}
+
+.profile-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.profile-stats strong {
+  color: #f4f4f5;
+  font-size: 18px;
+}
+
+.profile-stats span {
+  color: #71717a;
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection {
+  background: rgba(139, 92, 246, 0.35);
+  color: white;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1050px) {
+  .page {
+    grid-template-columns: 210px minmax(0, 1fr);
+  }
+
+  .right-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .page {
+    grid-template-columns: 1fr;
+    max-width: 700px;
+  }
+
+  .sidebar,
+  .right-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0 15px;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .nav-links {
+    gap: 3px;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    padding: 8px 9px;
+    font-size: 12px;
+  }
+
+  .page {
+    margin-top: 18px;
+    padding: 0 12px;
+  }
+
+  .post-card,
+  .create-post {
+    border-radius: 15px;
+    padding: 16px;
+  }
+
+  .profile-page {
+    padding: 0 12px;
+  }
+
+  .profile-card {
+    padding: 25px 18px;
+  }
+
+  .profile-stats {
+    gap: 28px;
+  }
+
+  .auth-box {
+    padding: 28px 22px;
+  }
+
+  .auth-box h1 {
+    font-size: 31px;
+  }
+}
+
+@media (max-width: 400px) {
+  .profile-stats {
+    gap: 18px;
+  }
+
+  .post-actions {
+    gap: 2px;
+  }
+
+  .post-actions button {
+    padding: 8px 9px;
+    font-size: 12px;
+  }
+}
